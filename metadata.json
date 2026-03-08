@@ -1,0 +1,7 @@
+{
+  "name": "MUET Speaking Master",
+  "description": "A comprehensive MUET Speaking preparation tool featuring individual and group discussion modes with AI-generated prompts, real-time timers, and AI-powered feedback.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
