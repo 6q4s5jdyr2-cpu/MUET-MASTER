@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
@@ -8,8 +10,19 @@
 
 @layer utilities {
   .card-batik {
-    background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  html.dark .card-batik {
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 
   .btn-batik {
@@ -25,9 +38,11 @@
   .pt-safe { padding-top: env(safe-area-inset-top); }
   
   .animate-flip { animation: flipIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-  .animate-blob1 { animation: float1 18s infinite ease-in-out; }
-  .animate-blob2 { animation: float2 22s infinite ease-in-out; }
-  .animate-blob3 { animation: float3 25s infinite ease-in-out; }
+  .animate-blob1 { animation: float1 18s infinite ease-in-out; will-change: transform; }
+  .animate-blob2 { animation: float2 22s infinite ease-in-out; will-change: transform; }
+  .animate-blob3 { animation: float3 25s infinite ease-in-out; will-change: transform; }
+  .animate-blob4 { animation: float4 20s infinite ease-in-out; will-change: transform; }
+  .animate-blob5 { animation: float5 24s infinite ease-in-out; will-change: transform; }
 }
 
 @keyframes flipIn {
@@ -36,19 +51,29 @@
 }
 
 @keyframes float1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(30px, -50px) scale(1.05) rotate(10deg); }
+  66% { transform: translate(-20px, 20px) scale(0.95) rotate(-10deg); }
 }
 @keyframes float2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-30px, 50px) scale(1.1); }
-  66% { transform: translate(20px, -20px) scale(0.9); }
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(-30px, 50px) scale(1.1) rotate(-15deg); }
+  66% { transform: translate(20px, -20px) scale(0.9) rotate(15deg); }
 }
 @keyframes float3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, 30px) scale(0.95); }
-  66% { transform: translate(-40px, -30px) scale(1.05); }
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(40px, 30px) scale(0.95) rotate(20deg); }
+  66% { transform: translate(-40px, -30px) scale(1.05) rotate(-20deg); }
+}
+@keyframes float4 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(-50px, -30px) scale(1.1) rotate(-25deg); }
+  66% { transform: translate(30px, 40px) scale(0.9) rotate(25deg); }
+}
+@keyframes float5 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(50px, -50px) scale(1.05) rotate(30deg); }
+  66% { transform: translate(-40px, 30px) scale(0.95) rotate(-30deg); }
 }
 
 html, body, #root {
@@ -62,4 +87,9 @@ body {
   background-color: #f8fafc;
   color: #0f172a;
   -webkit-tap-highlight-color: transparent;
+}
+
+html.dark body {
+  background-color: #020617; /* slate-950 */
+  color: #f1f5f9; /* slate-100 */
 }

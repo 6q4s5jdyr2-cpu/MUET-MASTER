@@ -93,3 +93,53 @@ export const GROUP_SAMPLE_QUESTIONS: MUETQuestion[] = [
 ];
 
 export const INITIAL_QUESTIONS = [...INDIVIDUAL_SAMPLE_QUESTIONS, ...GROUP_SAMPLE_QUESTIONS];
+
+export const WRITING_TASK1_SAMPLE_QUESTIONS: MUETQuestion[] = [
+  {
+    id: 'w1-s1',
+    category: Category.SOCIAL,
+    situation: 'You received an email from your friend, Aiman, who is planning a surprise birthday party for your mutual friend, Sarah.',
+    topic: 'Reply to the email',
+    points: [],
+    task: 'Write an email to Aiman using all the notes. Write at least 100 words.',
+    email: {
+      from: 'Aiman',
+      subject: 'Surprise Party for Sarah!',
+      message: 'Hi,\n\nI am planning a surprise birthday party for Sarah next weekend. I was thinking we could do it on Saturday evening. Let me know if you can make it.\n\nAlso, where do you think we should hold the party? At my house or at a restaurant?\n\nI need some help with the food too. Can you bring something?\n\nHope to hear from you soon!\n\nBest,\nAiman',
+      notes: ['Yes, I can make it!', 'Suggest a place', 'Offer to bring cake', 'Ask what time it starts']
+    }
+  },
+  {
+    id: 'w1-s2',
+    category: Category.EDUCATION,
+    situation: 'Your classmate, Lily, sent you an email regarding a group project.',
+    topic: 'Reply to the email',
+    points: [],
+    task: 'Write an email to Lily using all the notes. Write at least 100 words.',
+    email: {
+      from: 'Lily',
+      subject: 'Group Project Discussion',
+      message: 'Hello!\n\nWe need to meet up to discuss our group project for History. When are you free to meet this week?\n\nI think we should do our project on the Malacca Sultanate. What do you think?\n\nSince we need to gather a lot of information, should we go to the national library or just search online?\n\nLet me know soon so we can start early.\n\nThanks,\nLily',
+      notes: ['Tell her your free time', 'Agree with her idea', 'Suggest searching online', 'Apologize for replying late']
+    }
+  }
+];
+
+export const WRITING_TASK2_SAMPLE_QUESTIONS: MUETQuestion[] = [
+  {
+    id: 'w2-s1',
+    category: Category.SOCIAL,
+    situation: 'In many countries, young people are finding it increasingly difficult to buy their first home.',
+    topic: 'What are the main causes of this problem? What solutions can you suggest?',
+    points: [],
+    task: 'Write at least 250 words.'
+  },
+  {
+    id: 'w2-s2',
+    category: Category.ENVIRONMENT,
+    situation: 'Some people believe that the government should provide free public transport to reduce traffic congestion and pollution.',
+    topic: 'To what extent do you agree or disagree with this statement?',
+    points: [],
+    task: 'Write at least 250 words.'
+  }
+];

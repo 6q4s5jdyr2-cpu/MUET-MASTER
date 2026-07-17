@@ -44,7 +44,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, index, blind = fa
 
   return (
     <div 
-      className="bg-white rounded-[2.5rem] shadow-2xl border border-indigo-50 overflow-hidden flex flex-col h-full animate-flip"
+      className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-indigo-50 dark:border-slate-800 overflow-hidden flex flex-col h-full animate-flip"
     >
       <div className="bg-indigo-950 p-5 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-2 opacity-10">
@@ -60,35 +60,70 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, index, blind = fa
       
       <div className="p-8 flex-grow flex flex-col gap-6">
         <div className="space-y-2">
-          <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Situation</p>
-          <p className="text-base font-medium text-slate-700 leading-relaxed italic border-l-4 border-amber-100 pl-4">
+          <p className="text-[10px] font-black text-slate-300 dark:text-slate-500 uppercase tracking-widest">Situation</p>
+          <p className="text-base font-medium text-slate-700 dark:text-slate-300 leading-relaxed italic border-l-4 border-amber-100 dark:border-amber-900/50 pl-4">
             "{question.situation}"
           </p>
         </div>
 
         <div className="space-y-2">
-          <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest">Task</p>
-          <h3 className="text-2xl font-serif font-black text-indigo-950 leading-tight">
+          <p className="text-[10px] font-black text-indigo-500 dark:text-indigo-400 uppercase tracking-widest">Task</p>
+          <h3 className="text-2xl font-serif font-black text-indigo-950 dark:text-indigo-100 leading-tight">
             {question.topic}
           </h3>
         </div>
 
         {question.points.length > 0 && (
           <div className="space-y-3 mt-2">
-            <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Points to Discuss</p>
+            <p className="text-[10px] font-black text-slate-300 dark:text-slate-500 uppercase tracking-widest">Points to Discuss</p>
             <div className="flex flex-wrap gap-2">
               {question.points.map((p, i) => (
-                <span key={i} className="px-4 py-2 bg-indigo-50 text-indigo-900 text-[11px] font-bold rounded-xl border border-indigo-100">
+                <span key={i} className="px-4 py-2 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-900 dark:text-indigo-200 text-[11px] font-bold rounded-xl border border-indigo-100 dark:border-indigo-900/50">
                   {p}
                 </span>
               ))}
             </div>
           </div>
         )}
+
+        {question.email && (
+          <div className="mt-4 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-950 shadow-sm relative">
+            <div className="bg-slate-100 dark:bg-slate-800 px-4 py-2 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-300">New Message</span>
+            </div>
+            <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800/50 space-y-1">
+              <div className="text-xs font-medium text-slate-800 dark:text-slate-200">
+                <span className="text-slate-500 font-bold mr-2">From:</span> {question.email.from}
+              </div>
+              <div className="text-xs font-medium text-slate-800 dark:text-slate-200">
+                <span className="text-slate-500 font-bold mr-2">Subject:</span> {question.email.subject}
+              </div>
+            </div>
+            <div className="px-4 py-4 relative">
+              <div className="whitespace-pre-wrap text-sm text-slate-700 dark:text-slate-300">
+                {question.email.message}
+              </div>
+              
+              {/* Render handwritten-style notes hovering around */}
+              {question.email.notes && question.email.notes.length > 0 && (
+                 <div className="mt-6 border-t border-dashed border-amber-200 dark:border-amber-900/50 pt-4">
+                    <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-3">Notes to include in reply:</p>
+                    <div className="flex flex-col gap-2">
+                      {question.email.notes.map((note, idx) => (
+                        <div key={idx} className="bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 px-3 py-2 rounded text-xs font-bold font-serif shadow-sm italic flex items-center gap-2">
+                           <span className="text-amber-400">✏️</span> {note}
+                        </div>
+                      ))}
+                    </div>
+                 </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
       
-      <div className="px-8 py-5 bg-slate-50 border-t border-slate-100">
-        <span className="text-[10px] font-black text-indigo-300 uppercase tracking-widest">MUET PART {question.points.length > 0 ? '2' : '1'}</span>
+      <div className="px-8 py-5 bg-slate-50 dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700">
+        <span className="text-[10px] font-black text-indigo-300 dark:text-indigo-500/50 uppercase tracking-widest">MUET {question.email ? 'WRITING TASK 1' : question.task && question.task.includes('250') ? 'WRITING TASK 2' : question.points.length > 0 ? 'PART 2' : 'PART 1'}</span>
       </div>
     </div>
   );
